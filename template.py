@@ -1,8 +1,9 @@
 from __future__ import print_function
 import os
 import sys
-import re
 import codecs
+
+from FileProcessor import FileProcessor
 
 
 def process_file(filepath):
@@ -10,21 +11,20 @@ def process_file(filepath):
 
     content = fp.read()
 
-    #
-    #  INSERT YOUR CODE HERE
-    #
+    file_processor = FileProcessor(content)
+    file_processor.process()
 
     fp.close()
     print("nazwa pliku:", filepath)
-    print("autor:")
-    print("dzial:")
-    print("slowa kluczowe:")
-    print("liczba zdan:")
-    print("liczba skrotow:")
-    print("liczba liczb calkowitych z zakresu int:")
-    print("liczba liczb zmiennoprzecinkowych:")
-    print("liczba dat:")
-    print("liczba adresow email:")
+    print("autor:", file_processor.author)
+    print("dzial:", file_processor.section)
+    print("slowa kluczowe:", ", ".join(file_processor.keywords))
+    print("liczba zdan:", len(file_processor.sentences))
+    print("liczba skrotow:", len(file_processor.shortcuts))
+    print("liczba liczb calkowitych z zakresu int:", len(file_processor.integers))
+    print("liczba liczb zmiennoprzecinkowych:", len(file_processor.floats))
+    print("liczba dat:", len(file_processor.dates))
+    print("liczba adresow email:", len(file_processor.emails))
     print("\n")
 
 
