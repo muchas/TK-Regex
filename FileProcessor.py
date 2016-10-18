@@ -45,7 +45,9 @@ class FileProcessor:
         self.shortcuts = []
 
     def __match_integers(self):
-        self.integers = []
+        pattern = r'(-[1-3][0-2][0-7][0-6][0-8]|[1-3][0-2][0-7][0-6][0-7]|-?[1-9][0-9]{,3})'
+        regex = re.compile(pattern)
+        self.integers = regex.findall(self.content)
 
     def __match_floats(self):
         self.floats = []
